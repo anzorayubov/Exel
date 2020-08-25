@@ -1,0 +1,30 @@
+{
+  "name": "exel",
+  "version": "1.0.0",
+  "description": "pure js exel app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anzorayubov/Exel.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "exel"
+  ],
+  "author": "Ayubov Anzor <zorro-kep@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anzorayubov/Exel/issues"
+  },
+  "homepage": "https://github.com/anzorayubov/Exel#readme",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
