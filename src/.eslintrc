@@ -8,7 +8,11 @@
   "rules": {
     "semi": "off",
     "indent": "off",
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "linebreak-style": "off",
+    "no-trailing-spaces": "off",
+    "padded-blocks": "off",
+    "eol-last": "off"
   },
   "extends": [
     "eslint:recommended",
