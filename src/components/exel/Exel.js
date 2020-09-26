@@ -2,7 +2,7 @@ import {$} from '@core/dom';
 
 export class Exel {
     constructor(selector, options) {
-        this.$el = document.querySelector(selector)
+        this.$el = $(selector)
         this.components = options.components || []
     }
 
@@ -12,7 +12,7 @@ export class Exel {
         this.components.forEach((Component) => {
             const $el = $.create('div', Component.className)
             const component = new Component($el)
-            $el.innerHTML = component.toHTML()
+            $el.html(component.toHTML())
             $root.append($el)
         })
 
