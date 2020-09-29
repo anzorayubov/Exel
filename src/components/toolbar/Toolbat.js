@@ -1,7 +1,15 @@
 import {ExelComponent} from '@core/ExelComponent';
 
 export class Toolbat extends ExelComponent {
+    constructor($root) {
+        super($root, {
+            name: 'Toolbar',
+            listeners: ['click'],
+        })
+    }
+
     static className = 'exel__toolbar'
+
     toHTML() {
         return `
              <div class="button">
@@ -23,5 +31,9 @@ export class Toolbat extends ExelComponent {
                 <i class="material-icons">format_underlined</i>
             </div>
         `
+    }
+
+    onClick(event) {
+        console.log(event.target)
     }
 }
