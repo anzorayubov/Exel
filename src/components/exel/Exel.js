@@ -13,9 +13,9 @@ export class Exel {
             const $el = $.create('div', Component.className)
             const component = new Component($el)
             // degug
-            if (component.name) {
-                window['c' + component.name] = component
-            }
+            // if (component.name) {
+            //     window['c' + component.name] = component
+            // }
             $el.html(component.toHTML())
             $root.append($el)
             return component
