@@ -1,27 +1,32 @@
-import {ExelComponent} from '@core/ExelComponent';
-import {createTable} from '@/components/table/table.template';
+import {ExcelComponent} from '@core/ExcelComponent'
+import {createTable} from '@/components/table/table.template'
 
-export class Table extends ExelComponent {
-    static className = 'exel__table'
+export class Table extends ExcelComponent {
+  static className = 'excel__table'
 
-    constructor($root) {
-        super($root, {
-            listeners: ['click', 'mousedown', 'mousemove'],
-        });
-    }
+  constructor($root) {
+    super($root, {
+      listeners: ['click', 'mousedown', 'mousemove', 'mouseup']
+    })
+  }
 
-    toHTML() {
-        return createTable()
-    }
+  toHTML() {
+    return createTable(20)
+  }
 
-    onClick() {
-        console.log('click')
-    }
+  onClick() {
+    console.log('click')
+  }
 
-    onMouseDown() {
-        console.log('mouseDown')
-    }
-    onMouseMove() {
-        console.log('mousemove')
-    }
+  onMousedown(event) {
+    console.log('mousedown', event.target)
+  }
+
+  onMousemove() {
+    console.log('mousemove')
+  }
+
+  onMouseup() {
+    console.log('mouseup')
+  }
 }
