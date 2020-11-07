@@ -23,7 +23,10 @@ export class Table extends ExcelComponent {
 
             document.onmousemove = e => {
                 const delta = e.pageX - cords.right
-                $parent.$el.style.width = (cords.width + delta) + 'px'
+                const value = cords.width + delta
+                $parent.$el.style.width = value + 'px'
+                document.querySelectorAll(`[data-col="${$parent.data.col}"]`)
+                    .forEach((el) => el.style.width = value + 'px')
             }
 
             document.onmouseup = () => {
