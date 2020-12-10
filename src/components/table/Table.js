@@ -20,15 +20,22 @@ export class Table extends ExcelComponent {
             const $resizer = $(event.target)
             const $parent = $resizer.closest('[data-type="resizable"]')
             const cords = $parent.getCords()
+            const type = $resizer.data.resize
 
             const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`)
 
             document.onmousemove = e => {
-                const delta = e.pageX - cords.right
-                const value = cords.width + delta
-                $parent.$el.style.width = value + 'px'
+                if (type === 'col') {
+                    const delta = e.pageX - cords.right
+                    const value = cords.width + delta
+                    $parent.$el.style.width = value + 'px'
+                    cells.forEach((el) => el.style.width = value + 'px')
+                } else {
+                    const delta = e.pageY - cords.bottom
+                    const value = cords.height + delta
+                    $parent.$el.style.height = value + 'px'
+                }
 
-                cells.forEach((el) => el.style.width = value + 'px')
             }
 
             document.onmouseup = () => {
