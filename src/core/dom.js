@@ -66,6 +66,17 @@ class Dom {
         Object.keys(styles).forEach(key => this.$el.style[key] = styles[key])
     }
 
+    id(parce) {
+        if (parce) {
+            const parced = this.id().split(':')
+            return {
+                row: +parced[0],
+                col: +parced[1]
+            }
+        }
+        return this.data.id
+    }
+
     addClass(className) {
         return this.$el.classList.add(className)
     }
