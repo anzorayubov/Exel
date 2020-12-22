@@ -66,15 +66,20 @@ class Dom {
         Object.keys(styles).forEach(key => this.$el.style[key] = styles[key])
     }
 
-    id(parce) {
-        if (parce) {
-            const parced = this.id().split(':')
+    id(parse) {
+        if (parse) {
+            const parsed = this.id().split(':')
             return {
-                row: +parced[0],
-                col: +parced[1]
+                row: +parsed[0],
+                col: +parsed[1]
             }
         }
         return this.data.id
+    }
+
+    focus() {
+        this.$el.focus()
+        return this
     }
 
     addClass(className) {
