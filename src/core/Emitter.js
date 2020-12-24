@@ -2,7 +2,6 @@ export class Emitter {
     constructor() {
         this.listeners = {}
     }
-
     // event - название ивента которое имитим
     emit(event, ...arg) {
         if (!Array.isArray(this.listeners[event])) {
@@ -13,7 +12,6 @@ export class Emitter {
         })
         return true
     }
-
     subscribe(event, fn) {
         this.listeners[event] = this.listeners[event] || []
         this.listeners[event].push(fn)
@@ -21,5 +19,4 @@ export class Emitter {
             this.listeners[event] = this.listeners[event].filter(listener => listener !== fn)
         }
     }
-
 }
