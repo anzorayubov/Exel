@@ -30,12 +30,13 @@ export class Table extends ExcelComponent {
         const $cell = this.$root.find('[data-id="0:0"]')
         this.selection.select($cell)
 
-        this.emitter.subscribe('it is working', text => {
+        this.$subscribe('formula:input', text => {
             this.selection.current.text(text)
         })
+        this.unsubs.push(unsub)
     }
 
-    // закончил  урок
+    // закончил 59  урок
     onMousedown(event) {
         if (shouldResize(event)) {
             resizeHandler(this.$root, event)
@@ -64,6 +65,8 @@ export class Table extends ExcelComponent {
             this.selection.select($next)
         }
     }
+
+
 }
 
 
