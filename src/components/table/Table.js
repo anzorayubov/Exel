@@ -11,7 +11,7 @@ export class Table extends ExcelComponent {
     constructor($root, options) {
         super($root, {
             name: 'Table',
-            listeners: ['mousedown', 'keydown'],
+            listeners: ['mousedown', 'keydown', 'input'],
             ...options
         })
     }
@@ -27,16 +27,23 @@ export class Table extends ExcelComponent {
     init() {
         super.init() // метод для вызова родительского метода
 
-        const $cell = this.$root.find('[data-id="0:0"]')
-        this.selection.select($cell)
+        this.selectCell(this.$root.find('[data-id="0:0"]'))
 
         this.$subscribe('formula:input', text => {
             this.selection.current.text(text)
         })
-        this.unsubs.push(unsub)
+
+        this.$subscribe('formula:done', () => {
+            this.selection.current.focus()
+        })
     }
 
-    // закончил 59  урок
+    selectCell($cell) {
+        this.selection.select($cell)
+        this.$emit('table:select', $cell)
+    }
+
+    // закончил 61  урок
     onMousedown(event) {
         if (shouldResize(event)) {
             resizeHandler(this.$root, event)
@@ -60,10 +67,13 @@ export class Table extends ExcelComponent {
         if (keys.includes(key) && !event.shiftKey) {
             const id = this.selection.current.id(true)
             event.preventDefault()
-
             const $next = this.$root.find(nextSelector(key, id))
-            this.selection.select($next)
+            this.selectCell($next)
         }
+    }
+
+    onInput(event) {
+        this.$emit('table:input', $(event.target))
     }
 
 
