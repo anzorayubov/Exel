@@ -16,18 +16,16 @@ function getHeight(state, index) {
 
 function toCell(state, row) {
     return function (_, col) {
-        const id = `${row}:${col}`
-        const width = getWidth(state.colState, col)
-        const data = state.dataState[id]
+        const width = getWidth(state, col)
         return `
       <div 
         class="cell" 
         contenteditable 
         data-col="${col}"
         data-type="cell"
-        data-id="${id}"
+        data-id="${row}:${col}"
         style="width: ${width}"
-      >${data || ''}</div>
+      ></div>
     `
     }
 }
@@ -92,7 +90,7 @@ export function createTable(rowsCount = 15, state = {}) {
     for (let row = 0; row < rowsCount; row++) {
         const cells = new Array(colsCount)
             .fill('')
-            .map(toCell(state, row))
+            .map(toCell(state.colState, row))
             .join('')
 
         rows.push(createRow(row + 1, cells, state.rowState))
