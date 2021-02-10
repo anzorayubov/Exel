@@ -19,7 +19,7 @@ class Dom {
             return this
         }
         if (this.$el.tagName.toLowerCase() === 'input') {
-            this.$el.value.trim()
+            return this.$el.value.trim()
         }
         return this.$el.textContent.trim()
     }
@@ -59,13 +59,11 @@ class Dom {
         return this.$el.dataset
     }
 
-
     closest(selector) {
         return $(this.$el.closest(selector))
     }
 
-
-    getCords() {
+    getCoords() {
         return this.$el.getBoundingClientRect()
     }
 
@@ -74,7 +72,18 @@ class Dom {
     }
 
     css(styles = {}) {
-        Object.keys(styles).forEach(key => this.$el.style[key] = styles[key])
+        Object
+            .keys(styles)
+            .forEach(key => {
+                this.$el.style[key] = styles[key]
+            })
+    }
+
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
+            return res
+        }, {})
     }
 
     id(parse) {
@@ -102,10 +111,8 @@ class Dom {
         this.$el.classList.remove(className)
         return this
     }
-
 }
 
-// event.target
 export function $(selector) {
     return new Dom(selector)
 }

@@ -6,8 +6,8 @@ export class Header extends ExcelComponent {
     constructor($root, options) {
         super($root, {
             name: 'Header',
-            ...options
-        });
+            ...options,
+        })
     }
 
     toHTML() {
