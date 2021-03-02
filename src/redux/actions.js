@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import {
   CHANGE_TEXT,
   CHANGE_STYLES,
@@ -5,6 +6,9 @@ import {
   APPLY_STYLE,
   CHANGE_TITLE
 } from './types'
+=======
+import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE} from './types'
+>>>>>>> Stashed changes
 
 // Action Creator
 export function tableResize(data) {
@@ -41,4 +45,12 @@ export function changeTitle(data) {
     type: CHANGE_TITLE,
     data
   }
+}
+
+// value, ids
+export function applyStyle(data) {
+    return {
+        type: APPLY_STYLE,
+        data
+    }
 }

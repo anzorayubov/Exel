@@ -1,5 +1,8 @@
 import {toInlineStyles} from '@core/utils'
+<<<<<<< Updated upstream
 import {defaultStyles} from '@/constants'
+=======
+>>>>>>> Stashed changes
 
 const CODES = {
     A: 65,
@@ -22,10 +25,14 @@ function toCell(state, row) {
         const id = `${row}:${col}`
         const width = getWidth(state.colState, col)
         const data = state.dataState[id]
+<<<<<<< Updated upstream
         const styles = toInlineStyles({
             ...defaultStyles,
             ...state.stylesState[id]
         })
+=======
+        const styles = toInlineStyles(state.stylesState[id])
+>>>>>>> Stashed changes
         return `
       <div 
         class="cell" 
