@@ -10,35 +10,37 @@ import {Table} from '@/components/table/Table'
 import {normalizeInitialState} from '@/redux/initialState'
 
 function storageName(param) {
-    return 'excel:' + param
+  return 'excel:' + param
 }
 
 export class ExcelPage extends Page {
-    getRoot() {
-        const params = this.params ? this.params : Date.now().toString()
-        const state = storage(storageName(params))
-        const initialState = normalizeInitialState(state)
-        const store = createStore(rootReducer, initialState)
-        const stateListener = debounce((state) => {
-            console.log('App State: ', state)
-            storage(storageName(params), state)
-        }, 300)
+  getRoot() {
+    const params = this.params ? this.params : Date.now().toString()
 
-        store.subscribe(stateListener)
+    const state = storage(storageName(params))
+    const initialState = normalizeInitialState(state)
+    const store = createStore(rootReducer, initialState)
 
-        this.excel = new Excel({
-            components: [Header, Toolbar, Formula, Table],
-            store,
-        })
+    const stateListener = debounce(state => {
+      console.log('App State: ', state)
+      storage(storageName(params), state)
+    }, 300)
 
-        return this.excel.getRoot()
-    }
+    store.subscribe(stateListener)
 
-    afterRender() {
-        this.excel.init()
-    }
+    this.excel = new Excel({
+      components: [Header, Toolbar, Formula, Table],
+      store
+    })
 
-    destroy() {
-        this.excel.destroy()
-    }
+    return this.excel.getRoot()
+  }
+
+  afterRender() {
+    this.excel.init()
+  }
+
+  destroy() {
+    this.excel.destroy()
+  }
 }
